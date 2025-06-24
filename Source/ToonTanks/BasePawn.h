@@ -22,8 +22,17 @@ protected:
 	virtual void BeginPlay() override;
 
 private:
-	UPROPERTY()
+	UPROPERTY(EditAnywhere)
 	UCapsuleComponent* CapsuleComp;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* BaseMesh;
+
+	UPROPERTY(EditAnywhere)
+	UStaticMeshComponent* TurretMesh;
+
+	UPROPERTY(EditAnywhere)
+	USceneComponent* ProjectileSpawnPoint;
 
 public:	
 	// Called every frame
