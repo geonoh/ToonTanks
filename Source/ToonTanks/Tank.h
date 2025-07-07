@@ -15,18 +15,22 @@ UCLASS()
 class TOONTANKS_API ATank : public ABasePawn
 {
 	GENERATED_BODY()
-
+	
 public:
 	ATank();
-
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+
+	virtual void Tick(float DeltaSeconds) override;
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float Speed{ 200.f };
 
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurnRate{ 200.f };
+
+protected:
+	virtual void BeginPlay() override;
 
 private:
 	UPROPERTY(VisibleAnywhere, Category = "Components")
@@ -37,4 +41,6 @@ private:
 
 	void Move(float Value);
 	void Turn(float Value);
+
+	APlayerController* PlayerControllerRef;
 };

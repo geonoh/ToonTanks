@@ -25,7 +25,35 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 	PlayerInputComponent->BindAxis(TEXT("Turn"), this, &ATank::Turn);
 }
 
-void ATank::Move(float Value)
+void ATank::Tick(const float DeltaSeconds)
+{
+	Super::Tick(DeltaSeconds);
+
+	if (PlayerControllerRef)
+	{
+		FHitResult HitResult;
+		PlayerControllerRef->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+
+		DrawDebugSphere(
+			GetWorld(),
+			HitResult.ImpactPoint,
+			25.f,
+			12,
+			FColor::Red,
+			false,
+			-1.f
+		);
+	}
+}
+
+void ATank::BeginPlay()
+{
+	Super::BeginPlay();
+
+	PlayerControllerRef = Cast<APlayerController>(GetController());
+}
+
+void ATank::Move(const float Value)
 {
 	FVector DeltaLocation(0.f);
 	DeltaLocation.X = Value * Speed * UGameplayStatics::GetWorldDeltaSeconds(this);
@@ -34,7 +62,7 @@ void ATank::Move(float Value)
 
 }
 
-void ATank::Turn(float Value)
+void ATank::Turn(const float Value)
 {
 	FRotator DeltaRotator = FRotator::ZeroRotator;
 	DeltaRotator.Yaw = Value * TurnRate * UGameplayStatics::GetWorldDeltaSeconds(this);
