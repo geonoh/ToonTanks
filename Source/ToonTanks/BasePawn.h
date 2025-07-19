@@ -31,4 +31,5 @@ protected:
 	USceneComponent* ProjectileSpawnPoint;
 
 	void RotateTurret(const FVector& LookAtTarget);
+	void Fire();
 };
