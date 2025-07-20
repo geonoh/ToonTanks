@@ -6,6 +6,8 @@
 #include "GameFramework/Actor.h"
 #include "Projectile.generated.h"
 
+class UProjectileMovementComponent;
+
 UCLASS()
 class TOONTANKS_API AProjectile : public AActor
 {
@@ -26,4 +28,7 @@ public:
 private:
 	UPROPERTY(EditDefaultsOnly, Category = "Combat")
 	UStaticMeshComponent* ProjectileMesh;
+
+	UPROPERTY(EditDefaultsOnly, Category = "Movement")
+	UProjectileMovementComponent* ProjectileMovementComponent;
 };
