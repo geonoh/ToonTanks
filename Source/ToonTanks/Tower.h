@@ -19,6 +19,8 @@ public:
 	virtual void BeginPlay() override;
 	virtual void Tick(float DeltaSeconds) override;
 
+	void HandleDestruction();
+
 protected:
 	UPROPERTY(EditDefaultsOnly, Category="Combat")
 	float FireRange{ 300.f };

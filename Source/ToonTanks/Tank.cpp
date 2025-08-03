@@ -30,10 +30,10 @@ void ATank::Tick(const float DeltaSeconds)
 {
 	Super::Tick(DeltaSeconds);
 
-	if (PlayerControllerRef)
+	if (TankPlayerController)
 	{
 		FHitResult HitResult;
-		PlayerControllerRef->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
+		TankPlayerController->GetHitResultUnderCursor(ECC_Visibility, false, HitResult);
 		DrawDebugSphere(
 			GetWorld(),
 			HitResult.ImpactPoint,
@@ -48,11 +48,23 @@ void ATank::Tick(const float DeltaSeconds)
 	}
 }
 
+void ATank::HandleDestruction()
+{
+	Super::HandleDestruction();
+	SetActorHiddenInGame(true);
+	SetActorTickEnabled(false);
+}
+
+APlayerController* ATank::GetPlayerController() const
+{
+	return TankPlayerController;
+}
+
 void ATank::BeginPlay()
 {
 	Super::BeginPlay();
 
-	PlayerControllerRef = Cast<APlayerController>(GetController());
+	TankPlayerController = Cast<APlayerController>(GetController());
 }
 
 void ATank::Move(const float Value)

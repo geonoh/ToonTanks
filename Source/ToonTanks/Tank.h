@@ -29,6 +29,9 @@ public:
 	UPROPERTY(EditAnywhere, Category = "Movement")
 	float TurnRate{ 200.f };
 
+	void HandleDestruction();
+	APlayerController* GetPlayerController() const;
+
 protected:
 	virtual void BeginPlay() override;
 
@@ -42,5 +45,5 @@ private:
 	void Move(float Value);
 	void Turn(float Value);
 
-	APlayerController* PlayerControllerRef;
+	APlayerController* TankPlayerController;
 };
