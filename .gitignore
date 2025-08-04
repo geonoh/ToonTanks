@@ -74,3 +74,8 @@ Plugins/**/Intermediate/*
 DerivedDataCache/*
 
 enc_temp_folder/*
+
+# Rider
+.idea/
+*sln.DotSettings.*
+Plugins/
