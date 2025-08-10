@@ -43,4 +43,10 @@ private:
 
 	UPROPERTY(VisibleAnywhere, Category = "Combat")
 	UParticleSystemComponent* TrailParticles;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	USoundBase* LaunchSound;
+
+	UPROPERTY(EditAnywhere, Category = "Combat")
+	USoundBase* HitSound;
 };
