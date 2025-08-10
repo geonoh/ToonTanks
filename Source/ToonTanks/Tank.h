@@ -32,6 +32,8 @@ public:
 	void HandleDestruction();
 	APlayerController* GetPlayerController() const;
 
+	bool bAlive = true;
+	
 protected:
 	virtual void BeginPlay() override;
 
